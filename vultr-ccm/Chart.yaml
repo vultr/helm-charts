@@ -4,8 +4,6 @@ version: 1.0.0
 kubeVersion: A SemVer range of compatible Kubernetes versions (optional)
 description: A Helm chart for Vultr's Cloud Controller Manager
 type: application
-keywords:
-  - A list of keywords about this project (optional)
 home: https://github.com/vultr/vultr-cloud-controller-manager
 sources:
     - https://github.com/vultr/vultr-cloud-controller-manager
