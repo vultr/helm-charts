@@ -13,11 +13,11 @@ spec:
         app: csi-vultr-node
         role: csi-vultr
     spec:
-      serviceAccountName: csi-node-sa
+      serviceAccountName: csi-vultr-node-sa
       hostNetwork: true
       containers:
         - name: driver-registrar
-          image: quay.io/k8scsi/csi-node-driver-registrar:v1.3.0
+          image: quay.io/k8scsi/csi-node-driver-registrar:v2.0.1
           args:
             - "--v=5"
             - "--csi-address=$(ADDRESS)"
@@ -26,7 +26,7 @@ spec:
             - name: ADDRESS
               value: /csi/csi.sock
             - name: DRIVER_REG_SOCK_PATH
-              value: /var/lib/kubelet/plugins/vultrbs.csi.driver.com/csi.sock
+              value: /var/lib/kubelet/plugins/block.csi.vultr.com/csi.sock
             - name: KUBE_NODE_NAME
               valueFrom:
                 fieldRef:
@@ -38,22 +38,16 @@ spec:
               mountPath: /registration/
         - name: csi-vultr-plugin
           image: vultr/vultr-csi:{{ .Values.vultrCSIRelease }}
-          args :
+          args:
             - "--endpoint=$(CSI_ENDPOINT)"
-            - "--token=$(VULTR_API_KEY)"
           env:
             - name: CSI_ENDPOINT
               value: unix:///csi/csi.sock
-            - name: VULTR_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: vultr-helm-secret
-                  key: api-key
           imagePullPolicy: "Always"
           securityContext:
             privileged: true
             capabilities:
-              add: ["SYS_ADMIN"]
+              add: [ "SYS_ADMIN" ]
             allowPrivilegeEscalation: true
           volumeMounts:
             - name: plugin-dir
@@ -74,7 +68,7 @@ spec:
             type: Directory
         - name: plugin-dir
           hostPath:
-            path: /var/lib/kubelet/plugins/vultrbs.csi.driver.com
+            path: /var/lib/kubelet/plugins/block.csi.vultr.com
             type: DirectoryOrCreate
         - name: pods-mount-dir
           hostPath:
@@ -99,3 +93,36 @@ spec:
           hostPath:
             path: /sys
             type: Directory
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: csi-vultr-node-sa
+  namespace: kube-system
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: driver-registrar-binding
+  namespace: kube-system
+subjects:
+  - kind: ServiceAccount
+    name: csi-vultr-node-sa
+    namespace: kube-system
+roleRef:
+  kind: ClusterRole
+  name: csi-vultr-node-driver-registrar-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: csi-vultr-node-driver-registrar-role
+  namespace: kube-system
+rules:
+  - apiGroups: [ "" ]
+    resources: [ "events" ]
+    verbs: [ "get", "list", "watch", "create", "update", "patch" ]
