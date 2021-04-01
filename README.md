@@ -26,11 +26,11 @@ stringData:
 Each helm chart resides within it's own directory. Here are the current available charts.
 
 ## vultr-ccm
-The vultr-ccm is the [Cloud Controller Manager](https://github.com/vultr/vultr-csi) for Vultr.
+The vultr-ccm is the [Cloud Controller Manager](https://github.com/vultr/vultr-cloud-controller-manager) for Vultr.
 
 `helm install --generate-name --debug ./vultr-ccm`
 
 ## vultr-csi
-The vultr-csi is the [Container Storage Interface](https://github.com/vultr/vultr-cloud-controller-manager) for Vultr.
+The vultr-csi is the [Container Storage Interface](https://github.com/vultr/vultr-csi) for Vultr.
 
 `helm install --generate-name --debug ./vultr-csi`
