@@ -1,6 +1,14 @@
 apiVersion: v2
 name: vultr-csi
-description: A Helm chart for Vultr's Container Storage Interface
+version: 1.0.0
+kubeVersion: A SemVer range of compatible Kubernetes versions (optional)
+description:  A Helm chart for Vultr's Container Storage Interface.
 type: application
-version: 0.1.0
-appVersion: "v0.0.3"
+home: https://github.com/vultr/vultr-csi
+sources:
+    - https://github.com/vultr/vultr-csi
+    - https://github.com/vultr/helm-charts/vultr-csi
+maintainers:
+  - name: David Dymko
+icon: https://helm-charts.ewr1.vultrobjects.com/icons/vultr.svg
+appVersion: "v0.1.1"
