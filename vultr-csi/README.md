@@ -44,4 +44,4 @@ To uninstall the webhook run the following:
 # Helm
 helm uninstall [RELEASE_NAME]
 ```
-See [https://helm.sh/docs/helm/helm_uninstall/](https://helm.sh/docs/helm/helm_uninstall/) for command documentation.
+See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation.

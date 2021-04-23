@@ -18,7 +18,7 @@ helm repo add vultr https://vultr.github.io/helm-charts
 helm repo update
 ```
 
-See [helm repo](https://helm.sh/docs/helm/helm_repo/)for command documentation.
+See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation.
 
 ### Installing the Chart
 
@@ -44,7 +44,7 @@ To uninstall the webhook run the following:
 # Helm
 helm uninstall [RELEASE_NAME]
 ```
-See [https://helm.sh/docs/helm/helm_uninstall/](https://helm.sh/docs/helm/helm_uninstall/) for command documentation.
+See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation.
 
 ### Deploying a ClusterIssuer
 
