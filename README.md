@@ -1,5 +1,6 @@
 # Vultr Kubernetes Helm Charts
 
+[![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/vultr)](https://artifacthub.io/packages/search?repo=vultr)
 
 Helm Charts for Vultr.
 
