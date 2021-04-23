@@ -1,5 +1,0 @@
-# Default values for vultr-csi.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-vultrCSIRelease: "v0.1.1"
