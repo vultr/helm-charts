@@ -1,9 +1,14 @@
 apiVersion: v2
 name: vultr-ccm
+version: 1.0.0
+kubeVersion: A SemVer range of compatible Kubernetes versions (optional)
 description: A Helm chart for Vultr's Cloud Controller Manager
 type: application
-version: 0.1.0
-appVersion: "v0.0.5"
+home: https://github.com/vultr/vultr-cloud-controller-manager
 sources:
     - https://github.com/vultr/vultr-cloud-controller-manager
     - https://github.com/vultr/helm-charts/vultr-ccm
+maintainers:
+  - name: David Dymko
+icon: https://helm-charts.ewr1.vultrobjects.com/icons/vultr.svg
+appVersion: "v0.1.2"
