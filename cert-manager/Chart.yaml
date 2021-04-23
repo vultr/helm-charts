@@ -1,6 +1,6 @@
 apiVersion: v2
 version: 1.0.0
-appVersion: "0.1.0"
+appVersion: "v0.1.0"
 description: A Vultr cert-manager repo for creating an ACME DNS01 solver webhook 
 type: application
 name: cert-manager-webhook-vultr
