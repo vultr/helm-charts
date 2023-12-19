@@ -23,5 +23,5 @@ A Helm chart for Vultr's Cloud Controller Manager
 | env | list | `[]` |  |
 | image.repository | string | `"ghcr.io/goraxe-org/vultr-cloud-controller-manager"` |  |
 | image.tag | string | `"0.10.1"` |  |
-| vultrCCMRelease | string | `"v0.3.0"` |  |
+| imagePullSecrets | list | `[]` |  |
 
