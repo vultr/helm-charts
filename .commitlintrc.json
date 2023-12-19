@@ -1,0 +1,36 @@
+{
+  "parserPreset": "conventional-changelog",
+  "formatter": "@commitlint/format",
+  "rules": {
+    "subject-empty": [2, "never"],
+    "subject-full-stop": [2, "never", "."],
+    "type-case": [2, "always", "lower-case"],
+    "type-empty": [2, "never"],
+    "type-enum": [
+      2,
+      "always",
+      [
+        "build",
+        "chore",
+        "ci",
+        "debug",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test"
+      ]
+    ]
+  },
+  "prompt": {
+    "messages": {},
+    "questions": {
+      "type": {
+        "description": "please input type:"
+      }
+    }
+  }
+}

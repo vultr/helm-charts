@@ -1,0 +1,48 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.5.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies: ["conventional-changelog"]
+  - repo: https://github.com/renovatebot/pre-commit-hooks
+    rev: 37.49.3
+    hooks:
+      - id: renovate-config-validator
+  - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
+    rev: v1.1.2
+    hooks:
+      - id: htmlhint
+        # optional custom config:
+        args: [--config, .htmlhintrc]
+        #    - id: htmllint
+      - id: markdown-toc
+        # optional custom config:
+        args: [--indent, "    ", -i]
+      - id: dockerfile_lint
+        # optional custom config:
+        args: [--json, --verbose, --dockerfile]
+  - repo: https://github.com/bridgecrewio/checkov.git
+    rev: 3.0.24
+    hooks:
+      - id: checkov
+        args: [-d .]
+  - repo: https://github.com/Agilicus/pre-commit-hook-k8svalidate.git
+    rev: v0.2.0
+    hooks:
+      - id: k8svalidate
+        files: .yaml$
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        exclude: pnpm-lock.yaml

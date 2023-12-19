@@ -1,0 +1,25 @@
+#
+name: CI
+
+# Configures this workflow to run every time a change is pushed to the branch called `release`.
+on:
+  push:
+    branches: ["feature/*"]
+  pull_request:
+
+# There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: .pre-commit-config.yaml
+      - uses: asdf-vm/actions/install@v2.2.0
+      - uses: actions/setup-go@v4
+        with:
+          go-version-file: go.mod
+      - uses: pre-commit/action@v3.0.0
