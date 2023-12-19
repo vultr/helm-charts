@@ -33,7 +33,7 @@ spec:
           effect: NoSchedule
       hostNetwork: true
       containers:
-        - image: vultr/vultr-cloud-controller-manager:{{ .Values.vultrCCMRelease }}
+        - image: {{ .Values.image.repository}}:{{ .Values.image.tag }}
           name: vultr-cloud-controller-manager
           command:
             - "/vultr-cloud-controller-manager"
@@ -42,8 +42,4 @@ spec:
             - "--authentication-skip-lookup=true"
             - "--v=3"
           env:
-            - name: VULTR_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: vultr-helm-secret
-                  key: api-key
+            {{ toYaml .Values.env | indent 5}}

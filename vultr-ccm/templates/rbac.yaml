@@ -1,3 +1,26 @@
+apiversion: v1
+kind: serviceaccount
+metadata:
+  name: {{ include "vultr-ccm.fullname" . }}
+  labels:
+    app: {{ include "vultr-ccm.name" . }}
+    chart: {{ include "vultr-ccm.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: system:vultr-ccm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:vultr-ccm
+subjects:
+  - kind: ServiceAccount
+    name: vultr-ccm
+    namespace: kube-system
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -87,16 +110,3 @@ rules:
       - get
       - list
       - watch
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: system:vultr-ccm
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: system:vultr-ccm
-subjects:
-  - kind: ServiceAccount
-    name: vultr-ccm
-    namespace: kube-system

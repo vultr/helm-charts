@@ -1,49 +1,27 @@
-# Vultr-ccm
+# vultr-ccm
 
-The Vultr Cloud Controller Manager (ccm) provides a fully supported experience of Vultr features in your Kubernetes cluster.
+![Version: 1.3.0](https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.3.0](https://img.shields.io/badge/AppVersion-v0.3.0-informational?style=flat-square)
 
-- Node resources are assigned their respective Vultr instance hostnames, Region, PlanID and public/private IPs.
-- Node resources get put into their proper state if they are shutdown or removed. This allows for Kubernetes to properly reschedule pods
-- Vultr LoadBalancers are automatically deployed when a LoadBalancer service is deployed.
+A Helm chart for Vultr's Cloud Controller Manager
 
+**Homepage:** <https://github.com/vultr/vultr-cloud-controller-manager>
 
-## Prerequisites
+## Maintainers
 
-- Helm v3+ is required to install the `ccm` charts
+| Name | Email | Url |
+| ---- | ------ | --- |
+| David Dymko |  |  |
 
-## Installation
+## Source Code
 
-### Get Repo Info
+* <https://github.com/vultr/vultr-cloud-controller-manager>
 
-```
-helm repo add vultr https://vultr.github.io/helm-charts
-helm repo update
-```
+## Values
 
-See [helm repo](https://helm.sh/docs/helm/helm_repo/) for command documentation.
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| env | list | `[]` |  |
+| image.repository | string | `"ghcr.io/goraxe-org/vultr-cloud-controller-manager"` |  |
+| image.tag | string | `"0.10.1"` |  |
+| vultrCCMRelease | string | `"v0.3.0"` |  |
 
-### Installing the Chart
-
-First, you will need to deploy a secret with your api key. 
-
-```shell
-kubectl create secret generic "vultr-helm-secret" --from-literal=api-key=<VULTR API KEY> --namespace=kube-system
-```
-
-Second, you will deploy the helm chart.
-
-```shell
-# Helm
-helm install [RELEASE_NAME] vultr/vultr-ccm
-```
-
-This will deploy all necessary services, deployments, rbac, and various other resources required for cert-manager.
-
-### Uninstall the Chart
-To uninstall the webhook run the following:
-
-```shell
-# Helm
-helm uninstall [RELEASE_NAME]
-```
-See [helm uninstall](https://helm.sh/docs/helm/helm_uninstall/) for command documentation.

@@ -1,13 +1,12 @@
 apiVersion: v2
 version: 1.0.0
 appVersion: "v0.1.0"
-description: A Vultr cert-manager repo for creating an ACME DNS01 solver webhook 
+description: A Vultr cert-manager repo for creating an ACME DNS01 solver webhook
 type: application
 name: cert-manager-webhook-vultr
-type: application
 home: https://github.com/vultr/cert-manager-webhook-vultr
 sources:
-    - https://github.com/vultr/cert-manager-webhook-vultr
+  - https://github.com/vultr/cert-manager-webhook-vultr
 maintainers:
   - name: David Dymko
-icon: https://helm-charts.ewr1.vultrobjects.com/icons/vultr.svg    
+icon: https://helm-charts.ewr1.vultrobjects.com/icons/vultr.svg
