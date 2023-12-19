@@ -1,5 +1,5 @@
-apiversion: v1
-kind: serviceaccount
+apiVersion: v1
+kind: ServiceAccount
 metadata:
   name: {{ include "vultr-ccm.fullname" . }}
   labels:
