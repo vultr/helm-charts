@@ -42,4 +42,4 @@ spec:
             - "--authentication-skip-lookup=true"
             - "--v=3"
           env:
-            {{ toYaml .Values.env | indent 5}}
+            {{- toYaml .Values.env | nindent 12}}
