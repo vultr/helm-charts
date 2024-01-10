@@ -5,7 +5,7 @@
 imagePullSecrets: []
 
 image:
-  tag: 0.10.1
+  tag: 0.10.3
   repository: ghcr.io/goraxe-org/vultr-cloud-controller-manager
 
 env: []
