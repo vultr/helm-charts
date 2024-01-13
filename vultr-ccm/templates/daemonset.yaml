@@ -14,13 +14,11 @@ spec:
       labels:
         app: vultr-ccm
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
+      serviceAccountName: vultr-ccm
+      {{- with .Values.affinity }}
+      affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: vultr-ccm
-      nodeSelector:
-        "node-role.kubernetes.io/master": ""
       tolerations:
         - key: "node-role.kubernetes.io/master"
           effect: NoSchedule
@@ -36,6 +34,10 @@ spec:
           operator: Exists
           effect: NoSchedule
       hostNetwork: true
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - image: {{ .Values.image.repository}}:{{ .Values.image.tag }}
           name: vultr-cloud-controller-manager
